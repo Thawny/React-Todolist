@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+// make webpack-dev-server actually write files
 const WriteFilePlugin = require('write-file-webpack-plugin');
 
 module.exports = {

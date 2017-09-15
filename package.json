@@ -26,7 +26,9 @@
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1",
     "rxjs": "*",
-    "write-file-webpack-plugin": "*"
+    "write-file-webpack-plugin": "*",
+    "react": "^0.14.6",
+    "react-dom": "^0.14.6"
   },
   "keywords": [],
   "author": "",

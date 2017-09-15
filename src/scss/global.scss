@@ -1,3 +1,97 @@
+@import 'vars';
+@import 'boxes';
+
 body {
-    background-color: black;
+    padding: 0;
+    margin: 0;
+    #container {
+        max-height: 100vh;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        section {
+            // flex: 1;
+            height: calc(100vh/7);
+            display: flex;
+            line-height: 1em;
+            transition-property: line-height;
+            transition-duration: 0.4s;
+            transition-timing-function: linear;
+
+            h3 {
+                margin: auto;
+            }
+        }
+        #lundi {
+            background-color: $lundi;
+            color: $mardi;
+            div {
+                color: $mardi;
+            }
+            .box {
+                border-color: $mardi
+            }
+        }
+        #mardi {
+            background-color: $mardi;
+            color: $mercredi;
+            div {
+                color: $mercredi;
+            }
+            .box {
+                border-color: $mercredi
+            }
+        }
+        #mercredi {
+            background-color: $mercredi;
+            color: $jeudi;
+            div {
+                color: $jeudi;
+            }
+            .box {
+                border-color: $jeudi
+            }
+        }
+        #jeudi {
+            background-color: $jeudi;
+            color: $vendredi;
+            div {
+                color: $vendredi;
+            }
+            .box {
+                border-color: $vendredi
+            }
+        }
+        #vendredi {
+            background-color: $vendredi;
+            color: $samedi;
+            div {
+                color: $samedi;
+            }
+            .box {
+                border-color: $samedi
+            }
+        }
+        #samedi {
+            background-color: $samedi;
+            color: $dimanche;
+            div {
+                color: $dimanche;
+            }
+            .box {
+                border-color: $dimanche
+            }
+        }
+        #dimanche {
+            background-color: $dimanche;
+            color: $lundi;
+            div {
+                color: $lundi;
+            }
+            .box {
+                border-color: $lundi
+            }
+        }
+    }
 }
