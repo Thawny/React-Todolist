@@ -3,14 +3,15 @@ import React from "react";
 import ReactDom from "react-dom";
 import Layout from "./components/Layout";
 
-console.log('hello')
-
 function renderApp(todos) {
     ReactDom.render(
       <Layout todos={todos}/>,
       document.getElementById('app')
     );
 }
+
+// const todosFromHTML = JSON.parse(document.getElementById('usertodos').dataset.usertasks);
+// renderApp(todosFromHTML)
 
 var todos = {
     lundi : ["faire la lessive", "promener le chier"],
@@ -21,5 +22,4 @@ var todos = {
     samedi: [],
     dimanche: ["se reposer", "aller au cinéma", "aller au resto"]
 }
-
-renderApp(todos);
+renderApp(todos)
