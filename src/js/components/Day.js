@@ -5,14 +5,15 @@ import {TweenMax} from "gsap";
 export default class Day extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            displayState: "small",
-        }
-        this.displaySize = "small"
+        this.displaySize = "small";
+    }
+
+    componentDidMount() {
+        this.domElement = document.getElementById(this.props.day)
     }
 
     shrinkAllExcept(dayNotToShrink) {
-        var sections = document.querySelectorAll('section');
+        let sections = document.querySelectorAll('section');
         sections.forEach(section => {
             if (section.id !== dayNotToShrink) {
                 TweenMax.to(section, 0.7, {height: "14.29vh"});
@@ -23,31 +24,28 @@ export default class Day extends React.Component {
 
     handleClick(e) {
         console.log(e.target)
-        let domEl = document.getElementById(this.props.day)
         this.props.toggleDisplayBoxes(e.target.id)
-        if (domEl.dataset['displaystate'] == "large") {
-            TweenMax.to(domEl, 0.7, {height: "14.29vh"});
-            this.displaySize = "small";
-        } else if (domEl.dataset['displaystate'] == "small" || domEl.dataset['displaystate'] == "medium") {
-            TweenMax.to(domEl, 0.7, {height: "160vh"});
-            domEl.dataset['displaystate'] = "large";
+        if (this.domElement.dataset['displaystate'] == "large") {
+            TweenMax.to(this.domElement, 0.7, {height: "14.29vh"});
+            this.domElement.dataset['displaystate'] = "small";
+        } else if (this.domElement.dataset['displaystate'] == "small" || this.domElement.dataset['displaystate'] == "medium") {
+            TweenMax.to(this.domElement, 0.7, {height: "160vh"});
+            this.domElement.dataset['displaystate'] = "large";
             this.shrinkAllExcept(this.props.day);
         }
     }
 
     handleMouseLeave(e) {
-        let domEl = document.getElementById(this.props.day)
-        if (domEl.dataset['displaystate'] !== "large") {
-            TweenMax.to(domEl, 0.7, {height: "14.29vh"});
-            domEl.dataset['displaystate'] = "small";
+        if (this.domElement.dataset['displaystate'] !== "large") {
+            TweenMax.to(this.domElement, 0.7, {height: "14.29vh"});
+            this.domElement.dataset['displaystate'] = "small";
         }
     }
 
     handleMouseenter(e) {
-        let domEl = document.getElementById(this.props.day)
-        if (domEl.dataset['displaystate'] !== "large") {
-            TweenMax.to(domEl, 0.7, {height: "25vh"});
-            domEl.dataset['displaystate'] = "medium";
+        if (this.domElement.dataset['displaystate'] !== "large") {
+            TweenMax.to(this.domElement, 0.7, {height: "25vh"});
+            this.domElement.dataset['displaystate'] = "medium";
         }
     }
 
