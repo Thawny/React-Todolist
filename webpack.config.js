@@ -40,6 +40,6 @@ module.exports = {
         ]
     },
     plugins : [
-        new WriteFilePlugin()
+        // new WriteFilePlugin()
     ]
 };

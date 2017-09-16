@@ -23,7 +23,7 @@ export default class Day extends React.Component {
     }
 
     handleClick(e) {
-        console.log(e.target)
+        if (!e.target.classList.contains('box-container') && !(e.target.tagName == "SECTION")) return;
         this.props.toggleDisplayBoxes(e.target.id)
         if (this.domElement.dataset['displaystate'] == "large") {
             TweenMax.to(this.domElement, 0.7, {height: "14.29vh"});
@@ -42,7 +42,7 @@ export default class Day extends React.Component {
         }
     }
 
-    handleMouseenter(e) {
+    handleMouseEnter(e) {
         if (this.domElement.dataset['displaystate'] !== "large") {
             TweenMax.to(this.domElement, 0.7, {height: "25vh"});
             this.domElement.dataset['displaystate'] = "medium";
@@ -55,7 +55,7 @@ export default class Day extends React.Component {
         return (
             <section id={this.props.day}
                      onClick={this.handleClick.bind(this)}
-                     onMouseEnter={this.handleMouseenter.bind(this)}
+                     onMouseEnter={this.handleMouseEnter.bind(this)}
                      onMouseLeave={this.handleMouseLeave.bind(this)}
                      data-displaystate="small">
                 {content}
