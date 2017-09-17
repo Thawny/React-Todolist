@@ -22,16 +22,41 @@ export default class Day extends React.Component {
         })
     }
 
+    toggleDisplayBoxes(dayToChange) {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+            // grow box-container and hide day name
+            if (section.dataset['displaystate'] == "large") {
+                // hide day name
+                section.childNodes[1].classList.add('hidden');
+                // section.childNodes[0].classList.remove('hidden');
+                section.childNodes[0].classList.add('box-container-grow');
+                // section.childNodes[0].classList.add('box-container-grow');
+
+            }
+            else {
+                // shrink box-container and show day name
+                if (section.childNodes[0].classList.contains('box-container-grow')) {
+                    // section.childNodes[0].classList.add('hidden');
+                    section.childNodes[0].classList.remove('box-container-grow');
+                    // show day name
+                    section.childNodes[1].classList.remove('hidden');
+                }
+            }
+        });
+    }
+
     handleClick(e) {
         if (!e.target.classList.contains('box-container') && !(e.target.tagName == "SECTION")) return;
-        this.props.toggleDisplayBoxes(e.target.id)
         if (this.domElement.dataset['displaystate'] == "large") {
             TweenMax.to(this.domElement, 0.7, {height: "14.29vh"});
             this.domElement.dataset['displaystate'] = "small";
+            this.toggleDisplayBoxes(e.target.id)
         } else if (this.domElement.dataset['displaystate'] == "small" || this.domElement.dataset['displaystate'] == "medium") {
             TweenMax.to(this.domElement, 0.7, {height: "160vh"});
             this.domElement.dataset['displaystate'] = "large";
             this.shrinkAllExcept(this.props.day);
+            this.toggleDisplayBoxes(e.target.id)
         }
     }
 
@@ -51,14 +76,16 @@ export default class Day extends React.Component {
 
     render () {
 
-        let content = this.props.displayBoxes ? <Boxes todos={this.props.todos[this.props.day]}/> : <h3>{this.props.day}</h3>;
         return (
             <section id={this.props.day}
                      onClick={this.handleClick.bind(this)}
                      onMouseEnter={this.handleMouseEnter.bind(this)}
                      onMouseLeave={this.handleMouseLeave.bind(this)}
                      data-displaystate="small">
-                {content}
+
+                <Boxes todos={this.props.todos[this.props.day]}/>
+                <h3 className="day-name">{this.props.day}</h3>
+
             </section>
         );
     }

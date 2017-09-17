@@ -5,20 +5,21 @@ export default class Boxes extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: this.props.todos
+            tasks: this.props.todos,
+            doing: [],
+            done: []
         }
         this.handleClick = this.handleClick.bind(this);
     }
 
     renderTasks() {
-        // console.log(typeof this.state.tasks);
-        var Tasks = this.state.tasks.map((task) =>
-            <Task key={task.toString()} taskContent={task} updateTasks={this.updateTasks.bind(this)}/>
+        var Tasks = this.state.tasks.map((task, i) =>
+            <Task key={i.toString()} taskContent={task} updateTasks={this.updateTasks.bind(this)}/>
         );
         return Tasks;
     }
 
-    // "taskName", "UPDATE || DELETE" --> setState()
+    // "taskName", "UPDATE || DELETE || ADD" --> setState()
     updateTasks(action, taskName, newTask) {
         if (action == "DELETE") {
             const newState = this.state.tasks.filter(task => task !== taskName)
@@ -32,24 +33,30 @@ export default class Boxes extends React.Component {
             this.setState((prevState, props) => ({
             tasks: newState
             }));
+        } else if (action == "ADD") {
+            this.setState((prevState, props) => ({
+                tasks: prevState.tasks.concat([""])
+            }));
+            console.log(this.state.tasks)
         }
     }
 
     handleClick() {
-        this.setState((prevState, props) => ({
-            tasks: prevState.tasks.concat([10,11,12])
-        }));
+        console.log('click add')
+        this.updateTasks("ADD")
     }
 
     render () {
         return (
-            <div className="box-container" >
+            <div className="box-container box-container-shrink" >
                 <div className="to-do box">
                     <h3>
                         <span>À FAIRE</span>
                     </h3>
                     {this.renderTasks()}
-                    <div id="addTask" onClick={this.handleClick.bind(this)}>+</div>
+                    <div className="task add-task-container">
+                        <span className="add-task" onClick={this.handleClick.bind(this)}>+</span>
+                    </div>
                 </div>
                 <div className="doing box">
                     <h3>

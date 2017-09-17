@@ -23,3 +23,16 @@ var todos = {
     dimanche: ["se reposer", "aller au cinéma", "aller au resto"]
 }
 renderApp(todos)
+
+// Fix for chrome and firefox which other
+// var isChrome = !!window.chrome && !!window.chrome.webstore;
+// var isFirefox = typeof InstallTrigger !== 'undefined';
+//
+// if (isChrome || isFirefox) {
+//     console.log('is chrome')
+//     var taskContent = document.getElementsByClassName('task-content');
+//     for (let i = 0; taskContent.length > i; i++) {
+//         console.log(taskContent[i].style)
+//         taskContent[i].style.transform = "translateY(-10px)";
+//     }
+// }

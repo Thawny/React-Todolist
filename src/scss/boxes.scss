@@ -1,4 +1,6 @@
-
+.hidden {
+    display: none !important;
+}
 .box-container {
     // border: 1px solid #13070C;
     width: 100%;
@@ -10,6 +12,7 @@
     padding-right: 3%;
     padding-top: 3%;
     padding-bottom: 3%;
+
     .box {
         color: #13070C;
         border: 1px solid;
@@ -28,35 +31,70 @@
                 padding-right: 10px;
             }
         }
-        // #addTask {
-        //     height: 30px;
-        //     width: 30px;
-        //     color: white;
-        //     text-align: center;
-        //     padding-top: 5px;
-        //     box-sizing: border-box;
-        //     background-color: red;
-        // }
+        .add-task {
+            cursor: pointer;
+            border-top: none !important;
+            line-height: 30px;
+        }
+        .add-task-container {
+            max-width: 30px !important;
+            text-align: center;
+        }
         .task {
             // border: 1px solid #13070C;
             height: 30px;
             margin-top: 10px;
-            .task-span {
-                // border: 1px solid red;
+            .task-content {
+                // border: 1px solid orange;
+                // display: inline-block;
                 display: inline-block;
-                line-height: 30px;
+                min-width: 60px;
+                // min-height: 15px;
+                // height: 30px;
+                // transform: translateY(-8px);
+            }
+            .task-span {
+                display: inline-block;
+                // line-height: 30px;
+                height: 30px;
+                min-width: 60px;
                 padding-left: 5px;
                 padding-right: 5px;
             }
             .action-widget {
                 display: inline-block;
                 line-height: 30px;
-                padding-left: 5px;
-                padding-right: 5px;
+                // padding-left: 5px;
+                // padding-right: 5px;
+                // border: 1px solid green;
+                overflow: hidden;
+
+                width: 0px;
+                transition: width 0.5s;
             }
-            .hidden {
-                display: none;
+            .toggleWidgetHook {
+                text-align: left;
+                // border: 0.5px solid blue;
+                // max-height: 30px;
+                // width: 55px;
+                margin-left: 5px;
+                white-space: nowrap;
+                overflow: hidden;
+                width: 4px;
+                text-align: right;
+
+                span {
+                    // border: 1px solid inherit;
+                    margin-left: 5px;
+                    cursor: pointer;
+                }
+                .grow {
+                    width: 15px;
+                }
             }
+            // .grow {
+            //     width: 55px;
+            // }
             // box-sizing: border-box;
 
             // // padding-bottom: 10px;
@@ -70,4 +108,14 @@
             // }
         }
     }
+}
+.box-container-shrink {
+    //transition
+    transform: scale(0);
+    transition: transform 0.5s;
+}
+.box-container-grow {
+    //transition
+    transform: scale(1);
+    transition: transform 0.5s;
 }
