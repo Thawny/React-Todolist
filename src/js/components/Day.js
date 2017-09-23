@@ -39,8 +39,9 @@ export default class Day extends React.Component {
                 if (section.childNodes[0].classList.contains('box-container-grow')) {
                     // section.childNodes[0].classList.add('hidden');
                     section.childNodes[0].classList.remove('box-container-grow');
-                    // show day name
-                    section.childNodes[1].classList.remove('hidden');
+                    // show day name once the shrinking boxes animation is over
+                    setTimeout(() => section.childNodes[1].classList.remove('hidden'), 400)
+
                 }
             }
         });
