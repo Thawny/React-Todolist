@@ -21,6 +21,9 @@
         align-items: center;
         width: 26%;
         padding-left: 10px;
+        // for animation on drag over
+        transform: scale(1);
+        transition: all 0.5s;
         h3 {
             font-weight: lighter;
             text-align: center;
@@ -89,7 +92,7 @@
                     cursor: pointer;
                 }
                 .grow {
-                    width: 15px;
+                    width: 13px;
                 }
             }
             // .grow {
@@ -108,7 +111,12 @@
             // }
         }
     }
+    .dragged-over {
+        border-width: 4px;
+        transform: scale(1.1);
+    }
 }
+
 .box-container-shrink {
     //transition
     transform: scale(0);
@@ -118,4 +126,10 @@
     //transition
     transform: scale(1);
     transition: transform 0.5s;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+    transform: translateY(1.5px)
 }
