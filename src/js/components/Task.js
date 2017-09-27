@@ -38,21 +38,22 @@ export default class Task extends React.Component {
 
         this.taskContent.setAttribute("contenteditable",true);
         this.taskContent.focus();
-
     }
 
     handleDeleteClick(e) {
-        console.log(this.props.taskContent)
-        this.props.updateTasks("todos" ,"DELETE", this.props.taskContent)
+        this.props.updateTasks(this.props.boxType ,"DELETE", this.props.taskContent)
     }
 
     handleDragStart(e) {
-        console.log('drag started')
+
     }
 
     handleBlur(e) {
         e.target.setAttribute("contenteditable",false);
         this.draggableDiv.setAttribute('draggable', true);
+        // update currentBox avec contenu
+        const newTask = e.target.innerHTML;
+        this.props.updateTasks(this.props.boxType, "UPDATE", this.props.taskContent, newTask);
     }
 
     render () {

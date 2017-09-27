@@ -15,7 +15,7 @@ export default class Boxes extends React.Component {
 
     renderTasks(targetBox) {
         var Tasks = this.state[targetBox].map((task, i) =>
-            <Task key={i.toString()} taskContent={task} updateTasks={this.updateTasks.bind(this)}/>
+            <Task boxType={targetBox} key={i.toString()} taskContent={task} updateTasks={this.updateTasks.bind(this)}/>
         );
         return Tasks;
     }
@@ -34,6 +34,7 @@ export default class Boxes extends React.Component {
             this.setState((prevState, props) => ({
             [targetBox]: newState
             }));
+            console.log(this.state[targetBox])
         } else if (action == "ADD") {
             // si newtask la prendre en compte sinon tâche vide
             if (newTask) {
@@ -61,7 +62,6 @@ export default class Boxes extends React.Component {
         if (e.currentTarget.classList.contains('dragged-over')) {
             e.currentTarget.classList.remove('dragged-over');
         }
-        // TODO: supprimer tâche de l'ancien conteneur et le mette dans le nouveau
         // supprimer la tâche de l'ancien :
         this.updateTasks(originBox, "DELETE", movedTask);
         // ajouter la tâche dans le conteneur du drop :
@@ -99,8 +99,8 @@ export default class Boxes extends React.Component {
                         <span>À FAIRE</span>
                     </h3>
                     {this.renderTasks('todos')}
-                    <div className="task add-task-container">
-                        <span className="add-task" onClick={this.handleClick.bind(this)}>+</span>
+                    <div className="task add-task-container" onClick={this.handleClick.bind(this)}>
+                        <span className="add-task">+</span>
                     </div>
                 </div>
                 <div data-type="doings" className="doing box" onDragStart={this.handleDragStart.bind(this)} onDrop={this.handleDrop.bind(this)} onDragLeave={this.handleDropLeave} onDragOver={this.handleDragOver}>
